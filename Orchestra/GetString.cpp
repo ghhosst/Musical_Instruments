@@ -1,7 +1,10 @@
-#include "String.h"
-#include <cstdio> 
+#include "GetString.h"
+#include <locale.h>
+#include <iostream>
+using std::cin;
 
-char* String::getString(int* len) {
+char* getString(int* len) {
+   // setlocale(LC_ALL, "Russian");
     bool flag = true;
     *len = 0;           // initially the line is empty
     int capacity = 1;   // capacity of the dynamic string container (1, so how exactly will it be '\0')
@@ -9,7 +12,7 @@ char* String::getString(int* len) {
     char* s = new char[1];
     char* sPtr = s;
 m1:
-    char c = getchar(); // symbol for reading data
+    char c = cin.get();; // symbol for reading data
     if ((*len == 0) && (flag)) {
         flag = false;
         goto m1;
@@ -41,7 +44,7 @@ m1:
             delete tmp;
             sPtr = s;
         }
-        c = getchar();  // read the following character         
+        c = cin.get();  // read the following character         
     }
 
     s[*len] = '\0';     // we end the line with the end of the line symbol

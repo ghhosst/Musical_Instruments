@@ -4,11 +4,15 @@
 class WindInstrument :
     public BaseOrchestra{
 private:
-    String NameManufacture;
-    String Defects;
+    char* NameManufacture;
+    char* Defects;
 public:
-    String GetNameManufacture();
-    void SetNameManufacture(String NameManufacture);
-    String GetDefects();
-    void SetDefects(String Defects);
+    WindInstrument();
+
+    char* GetNameManufacture();
+    void SetNameManufacture(char* NameManufacture);
+    char* GetDefects();
+    void SetDefects(char* Defects);
+
+    void Sound();
 };

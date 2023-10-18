@@ -4,11 +4,15 @@
 class StringInstrument :
     public BaseOrchestra{
 private:
-    String NameManufacture;
-    String TextDescription;
+    char* NameManufacture;
+    char* TextDescription;
 public:
-    String GetNameManufacture();
-    void SetNameManufacture(String NameManufacture);
-    String GetTextDescription();
-    void SetTextDescription(String TextDescription);
+    StringInstrument();
+
+    char* GetNameManufacture();
+    void SetNameManufacture(char* NameManufacture);
+    char* GetTextDescription();
+    void SetTextDescription(char* TextDescription);
+
+    void Sound();
 };

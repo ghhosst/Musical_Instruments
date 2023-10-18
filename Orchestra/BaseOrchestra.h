@@ -1,21 +1,22 @@
 #pragma once
-#include "String.h"
+#include "GetString.h"
+#include <iostream>
 
 class BaseOrchestra {
 private:
-	String NameInstrument; 
-	String FullNameOwner;
+	char* NameInstrument; 
+	char* FullNameOwner;
 	int NumUnitsOrchestra;
 	int Cost;
 public:
-	String GetNameInstrument();
-	void SetNameInstrument(String NameInstrument);
-	String GetFullNameOwner();
-	void SetFullNameOwner(String FullNameOwner);
+	char* GetNameInstrument();
+	void SetNameInstrument(char* NameInstrument);
+	char* GetFullNameOwner();
+	void SetFullNameOwner(char* FullNameOwner);
 	int GetNumUnitsOrchestra();
 	void SetNumUnitsOrchestra(int NumUnitsOrchestra);
 	int GetCost();
 	void SetCost(int Cost);
 
-	virtual void f() = 0;
+	virtual void Sound() = 0;
 }; 

@@ -128,16 +128,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BaseOrchestra.cpp" />
+    <ClCompile Include="Element.cpp" />
+    <ClCompile Include="GetString.cpp" />
+    <ClCompile Include="Keeper.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PercussionInstrument.cpp" />
-    <ClCompile Include="String.cpp" />
     <ClCompile Include="StringInstrument.cpp" />
     <ClCompile Include="WindInstrument.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseOrchestra.h" />
+    <ClInclude Include="Element.h" />
+    <ClInclude Include="GetString.h" />
+    <ClInclude Include="Keeper.h" />
     <ClInclude Include="PercussionInstrument.h" />
-    <ClInclude Include="String.h" />
     <ClInclude Include="StringInstrument.h" />
     <ClInclude Include="WindInstrument.h" />
   </ItemGroup>

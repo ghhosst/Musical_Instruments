@@ -1,13 +1,16 @@
-#include "BaseOrchestra.h"
+//#include "BaseOrchestra.h"
+#include "Keeper.h"
 #include <iostream>
 using namespace std;
 
 int main() {
-	setlocale(LC_ALL, "ru");
+	setlocale(LC_ALL, "Russian");
+	system("chcp 1251"); 
 
-	
+	Keeper TheKeeper;
 
 	int choice1, choice2;
+	int choiceInstrument;
 
 	do {
 		system("cls");
@@ -28,21 +31,9 @@ int main() {
 				 << "2) Струнный" << endl
 				 << "3) Духовой" << endl
 				 << "Выбранный пункт: ";
-			cin >> choice2;
+			cin >> choiceInstrument;
 			
-			switch (choice2){
-			case 1:
-
-				break;
-			case 2:
-
-				break;
-			case 3:
-
-				break;
-			default:
-				break;
-			}
+			TheKeeper.Add(choiceInstrument);
 			break;
 		default:
 			break;

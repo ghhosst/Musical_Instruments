@@ -4,8 +4,11 @@
 class PercussionInstrument :
     public BaseOrchestra{
 private:
-    String TypeInstrument;
+    char* TypeInstrument;
 public:
-    String GetTypeInstrument();
-    void SetTypeInstrument(String TypeInstrument);
+    PercussionInstrument();
+    char* GetTypeInstrument();
+    void SetTypeInstrument(char* TypeInstrument);
+
+    void Sound();
 }; 

@@ -1,18 +1,18 @@
 #include "BaseOrchestra.h"
 
-String BaseOrchestra::GetNameInstrument() {
+char* BaseOrchestra::GetNameInstrument() {
 	return this->NameInstrument;
 }
 
-void BaseOrchestra::SetNameInstrument(String NameInstrument) {
+void BaseOrchestra::SetNameInstrument(char* NameInstrument) {
 	this->NameInstrument = NameInstrument; 
 }
 
-String BaseOrchestra::GetFullNameOwner() {
+char* BaseOrchestra::GetFullNameOwner() {
 	return this->FullNameOwner;
 }
 
-void BaseOrchestra::SetFullNameOwner(String FullNameOwner) {
+void BaseOrchestra::SetFullNameOwner(char* FullNameOwner) {
 	this->FullNameOwner = FullNameOwner;
 }
 
