@@ -2,6 +2,7 @@
 
 #include "BaseOrchestra.h"
 #include "Element.h"
+#include <fstream>
 
 class Keeper {
 private:
@@ -10,6 +11,9 @@ private:
 	Element* index;	// current element
 public:
 	Keeper();
+	Keeper(Element* root, Element* rear, Element* index);
+	Keeper(const Keeper& other);
+	~Keeper();
 
 	Element* GetRoot();
 	void SetRoot(Element* root);
@@ -18,5 +22,10 @@ public:
 	Element* GetIndex();
 	void SetIndex(Element* index);
 
-	void Add(int choiceInstrument);
+	void Add();
+	void ShowOrchestra();
+	void DeleteInstrument();
+	void ÑhangeInstrument();
+	void Save();
+	void Load();
 };

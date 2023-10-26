@@ -1,10 +1,9 @@
 #include "GetString.h"
-#include <locale.h>
 #include <iostream>
 using std::cin;
 
 char* getString(int* len) {
-   // setlocale(LC_ALL, "Russian");
+
     bool flag = true;
     *len = 0;           // initially the line is empty
     int capacity = 1;   // capacity of the dynamic string container (1, so how exactly will it be '\0')
@@ -31,7 +30,7 @@ m1:
                 sPtr++;
                 tmpPtr++;
             }
-            delete s;
+            delete[] s; 
             capacity *= 2;          // we double the capacity of the string
             s = new char[capacity]; // creating a new row with increased capacity  
             sPtr = s;
@@ -41,7 +40,7 @@ m1:
                 tmpPtr++;
                 sPtr++;
             }
-            delete tmp;
+            delete[] tmp; 
             sPtr = s;
         }
         c = cin.get();  // read the following character         

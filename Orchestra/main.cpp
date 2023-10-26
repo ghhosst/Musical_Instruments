@@ -1,4 +1,4 @@
-//#include "BaseOrchestra.h"
+#define _CRT_SECURE_NO_WARNINGS  
 #include "Keeper.h"
 #include <iostream>
 using namespace std;
@@ -9,8 +9,7 @@ int main() {
 
 	Keeper TheKeeper;
 
-	int choice1, choice2;
-	int choiceInstrument;
+	int choice1;
 
 	do {
 		system("cls");
@@ -19,29 +18,41 @@ int main() {
 			 << "2) Удалить инструмент" << endl
 			 << "3) Вывести на экран все имеющиеся инструменты" << endl
 			 << "4) Изменить данные об инструменте" << endl
-			 << "5) Выйти из программы" << endl
+			 << "5) Сохранить в файл" << endl
+			 << "6) Загрузить из файла" << endl
+			 << "7) Выйти из программы" << endl
 			 << "Выбранный пункт: ";
 		cin >> choice1;
 
 		switch (choice1){
 		case 1:
-			system("cls");
-			cout << "Какой инструмент добавить в оркестр ?" << endl
-			 	 << "1) Ударный" << endl
-				 << "2) Струнный" << endl
-				 << "3) Духовой" << endl
-				 << "Выбранный пункт: ";
-			cin >> choiceInstrument;
-			
-			TheKeeper.Add(choiceInstrument);
+			TheKeeper.Add();
+			break;
+		case 2:
+			TheKeeper.DeleteInstrument();
+			break;
+		case 3:
+			TheKeeper.ShowOrchestra();
+			break;
+		case 4:
+			TheKeeper.СhangeInstrument();
+			break;
+		case 5:
+			TheKeeper.Save();
+			break;
+		case 6:
+			TheKeeper.Load(); 
+			break;
+		case 7:
 			break;
 		default:
+			cout << "\n\nНеккоректный выбор!!!\nПожалуйста, выберете пункт меню от 1 до 7.\n\n";
+			system("pause");
 			break;
 		}
+	} while (choice1 != 7);
 
 
-	} while (choice1 != 5);
-
-
+	
 	return 0; 
 }

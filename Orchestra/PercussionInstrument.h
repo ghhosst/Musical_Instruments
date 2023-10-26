@@ -4,11 +4,19 @@
 class PercussionInstrument :
     public BaseOrchestra{
 private:
-    char* TypeInstrument;
+    char* TypePerc;
 public:
     PercussionInstrument();
-    char* GetTypeInstrument();
-    void SetTypeInstrument(char* TypeInstrument);
+    PercussionInstrument(char* s);
+    PercussionInstrument(const PercussionInstrument& other);
+    ~PercussionInstrument() override;
 
-    void Sound();
+    char* GetTypePerc();
+    void SetTypePerc(char* TypePerc);
+
+    void ShowInstrument() override;
+    void Change() override;
+    void SaveToFile(std::ofstream& outputFile) override;  
+    void SaveSpecial(std::ofstream& fout) override;
+    void LoadFile(std::ifstream& fin) override;
 }; 

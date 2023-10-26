@@ -104,6 +104,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,9 +132,11 @@
     <ClCompile Include="BaseOrchestra.cpp" />
     <ClCompile Include="Element.cpp" />
     <ClCompile Include="GetString.cpp" />
+    <ClCompile Include="InitString.cpp" />
     <ClCompile Include="Keeper.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PercussionInstrument.cpp" />
+    <ClCompile Include="readLineFile.cpp" />
     <ClCompile Include="StringInstrument.cpp" />
     <ClCompile Include="WindInstrument.cpp" />
   </ItemGroup>
@@ -142,8 +146,13 @@
     <ClInclude Include="GetString.h" />
     <ClInclude Include="Keeper.h" />
     <ClInclude Include="PercussionInstrument.h" />
+    <ClInclude Include="readLineFile.h" />
     <ClInclude Include="StringInstrument.h" />
+    <ClInclude Include="initString.h" />
     <ClInclude Include="WindInstrument.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Orchestra.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
