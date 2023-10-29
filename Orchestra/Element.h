@@ -12,8 +12,8 @@ private:
 public:
 	Element();
 	Element(int choiceInstrument);
-	Element(char TypeInstrument);
-	Element(const Element& other);
+	Element(char TypeInstrument);  
+	Element(const Element& other);  
 	~Element();
 
 	Element* GetNext();

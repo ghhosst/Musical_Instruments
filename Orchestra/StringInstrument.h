@@ -8,7 +8,7 @@ private:
     char* TextDescription;
 public:
     StringInstrument();
-    StringInstrument(char* s);
+    StringInstrument(char file);  
     StringInstrument(const StringInstrument& other);
     ~StringInstrument() override;
 

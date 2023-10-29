@@ -5,85 +5,16 @@ using std::cin;
 using std::endl;
 
 StringInstrument::StringInstrument() {
-	char* s = nullptr;
-	NameManufacture = initString(s);
-	TextDescription = initString(s);
-
-	int choiceStringInst;
-	int NumUnitsStringInst;
-	float CostStringInst;
-	int lenString;
-	do {
-		system("cls");
-		cout << "Введите данные о струнном инструменте" << endl
-			<< "1) Название" << endl
-			<< "2) ФИО владельца" << endl
-			<< "3) Количество единиц в оркестре" << endl
-			<< "4) Стоимость" << endl
-			<< "5) Наименование производителя" << endl
-			<< "6) Краткое текстовое описание" << endl
-			<< "7) Выход" << endl
-			<< "Выбранный пункт: ";
-		cin >> choiceStringInst;
-
-
-		switch (choiceStringInst) {
-		case 1:
-			system("cls");
-			cout << "Струнный интрумент\n";
-			cout << "Введите название:\n" << endl;
-			SetNameInstrument(getString(&lenString));
-			break;
-		case 2:
-			system("cls");
-			cout << "Струнный инструмент\n";
-			cout << "Введите ФИО владельца:\n" << endl;
-			SetFullNameOwner(getString(&lenString));
-			break;
-		case 3:
-			system("cls");
-			cout << "Струнный инструмент\n";
-			cout << "Введите количество единиц в оркестре: ";
-			cin >> NumUnitsStringInst;
-			SetNumUnitsOrchestra(NumUnitsStringInst);
-			break;
-		case 4:
-			system("cls");
-			cout << "Струнный инструмент\n";
-			cout << "Введите стоимость: ";
-			cin >> CostStringInst;
-			SetCost(CostStringInst);
-			break;
-		case 5:
-			system("cls");
-			cout << "Струнный инструмент\n";
-			cout << "Введите наименование производителя: \n" << endl;
-			NameManufacture = getString(&lenString);
-			break;
-		case 6:
-			system("cls");
-			cout << "Струнный инструмент\n";
-			cout << "Напишите краткое текстовое описание:\n" << endl;
-			TextDescription = getString(&lenString);
-			break;
-		case 7:
-			break;
-		default:
-			cout << "\n\nНеккоректный выбор!!!\nПожалуйста, выберете пункт от 1 до 7.\n\n";
-			system("pause");
-			break;
-		}
-	} while (choiceStringInst != 7);
-
-	delete[] s;
-	s = nullptr;
 	std::cout << "\n----|Вызван конструктор класса StringInstrument (без параметров)|----\n";
 	system("pause");
-}
 
-StringInstrument::StringInstrument(char* s) {
-	NameManufacture = initString(s);
-	TextDescription = initString(s);
+	const char* initStr = "\t-";
+	
+	NameManufacture = new char[sizeof(initStr)];
+	strcpy(NameManufacture, initStr);
+
+	TextDescription = new char[sizeof(initStr)];
+	strcpy(TextDescription, initStr);
 
 	int choiceStringInst;
 	int NumUnitsStringInst;
@@ -150,27 +81,32 @@ StringInstrument::StringInstrument(char* s) {
 			break;
 		}
 	} while (choiceStringInst != 7);
+}
 
-	delete[] s;
-	s = nullptr;
+StringInstrument::StringInstrument(char file) { 
 	std::cout << "\n----|Вызван конструктор класса StringInstrument (с параметром)|----\n";
 	system("pause");
+
+	NameManufacture = nullptr;
+	TextDescription = nullptr;
 }
 
 StringInstrument::StringInstrument(const StringInstrument& other) {
-	strcpy(this->NameManufacture, other.NameManufacture);
-	strcpy(this->TextDescription, other.TextDescription);
 	std::cout << "\n----|Вызван конструктор класса StringInstrument (копирования)|----\n";
 	system("pause");
+
+	strcpy(this->NameManufacture, other.NameManufacture);
+	strcpy(this->TextDescription, other.TextDescription);
 }
 
 StringInstrument::~StringInstrument() {
+	std::cout << "\n----|Вызван деструктор класса StringInstrument|----\n";
+	system("pause");
+
 	delete[] NameManufacture;
 	NameManufacture = nullptr;
 	delete[] TextDescription;
 	TextDescription = nullptr; 
-	std::cout << "\n----|Вызван деструктор класса StringInstrument|----\n";
-	system("pause");
 }
 
 char* StringInstrument::GetNameManufacture() {
@@ -278,10 +214,10 @@ void StringInstrument::LoadFile(std::ifstream& fin) {
 			SetFullNameOwner(readLineFile(fin));
 			break;
 		case 2:
-			SetNumUnitsOrchestra((int)readLineFile(fin));
+			SetNumUnitsOrchestra(atoi(readLineFile(fin)));
 			break;
 		case 3:
-			SetCost((float)(int)readLineFile(fin));
+			SetCost(convertToFloat(readLineFile(fin)));  
 			break;
 		case 4:
 			NameManufacture = readLineFile(fin); 

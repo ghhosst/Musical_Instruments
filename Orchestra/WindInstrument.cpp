@@ -5,85 +5,16 @@ using std::cin;
 using std::endl;
 
 WindInstrument::WindInstrument() {
-	char* s = nullptr;
-	NameManufacture = initString(s);
-	Defects = initString(s);
-
-	int choiceWind;
-	int NumUnitsWind;
-	float CostWind;
-	int lenString;
-	do {
-		system("cls");
-		cout << "Введите данные о духовом инструменте" << endl
-			<< "1) Название" << endl
-			<< "2) ФИО владельца" << endl
-			<< "3) Количество единиц в оркестре" << endl
-			<< "4) Стоимость" << endl
-			<< "5) Наименование производителя" << endl
-			<< "6) Какие дефекты присутвсвуют" << endl
-			<< "7) Выход" << endl
-			<< "Выбранный пункт: ";
-		cin >> choiceWind;
-
-
-		switch (choiceWind) {
-		case 1:
-			system("cls");
-			cout << "Духовой интрумент\n";
-			cout << "Введите название:\n" << endl;
-			SetNameInstrument(getString(&lenString));
-			break;
-		case 2:
-			system("cls");
-			cout << "Духовой инструмент\n";
-			cout << "Введите ФИО владельца:\n" << endl;
-			SetFullNameOwner(getString(&lenString));
-			break;
-		case 3:
-			system("cls");
-			cout << "Духовой инструмент\n";
-			cout << "Введите количество единиц в оркестре: ";
-			cin >> NumUnitsWind;
-			SetNumUnitsOrchestra(NumUnitsWind);
-			break;
-		case 4:
-			system("cls");
-			cout << "Духовой инструмент\n";
-			cout << "Введите стоимость: ";
-			cin >> CostWind;
-			SetCost(CostWind);
-			break;
-		case 5:
-			system("cls");
-			cout << "Духовой инструмент\n";
-			cout << "Введите наименование производителя: \n" << endl;
-			NameManufacture = getString(&lenString);
-			break;
-		case 6:
-			system("cls");
-			cout << "Духовой инструмент\n";
-			cout << "Напишите какие дефекты присутсвуют в этом инструменте:\n" << endl;
-			Defects = getString(&lenString);
-			break;
-		case 7:
-			break;
-		default:
-			cout << "\n\nНеккоректный выбор!!!\nПожалуйста, выберете пункт от 1 до 7.\n\n";
-			system("pause");
-			break;
-		}
-	} while (choiceWind != 7);
-
-	delete[] s;
-	s = nullptr;
 	std::cout << "\n----|Вызван конструктор класса WindInstrument (без параметров)|----\n";
 	system("pause");
-}
 
-WindInstrument::WindInstrument(char* s) {
-	NameManufacture = initString(s);
-	Defects = initString(s);
+	const char* initStr = "\t-";
+	
+	NameManufacture = new char[sizeof(initStr)]; 
+	strcpy(NameManufacture, initStr);
+
+	Defects = new char[sizeof(initStr)]; 
+	strcpy(Defects, initStr); 
 
 	int choiceWind;
 	int NumUnitsWind;
@@ -150,27 +81,30 @@ WindInstrument::WindInstrument(char* s) {
 			break;
 		}
 	} while (choiceWind != 7);
+}
 
-	delete[] s;
-	s = nullptr;
+WindInstrument::WindInstrument(char file) { 
 	std::cout << "\n----|Вызван конструктор класса WindInstrument (с параметром)|----\n";
 	system("pause");
+
+	NameManufacture = nullptr;
+	Defects = nullptr; 
 }
 
 WindInstrument::WindInstrument(const WindInstrument& other) {
+	std::cout << "\n----|Вызван конструктор класса WindInstrument (копирования)|----\n";
+	system("pause");
 	strcpy(this->NameManufacture, other.NameManufacture);
 	strcpy(this->Defects, other.Defects);
-	std::cout << "\n----|Вызван конструктор класса WindInstrument (копирования)|----\n";
-	system("pause"); 
 }
 
 WindInstrument::~WindInstrument() {
+	std::cout << "\n----|Вызван деструктор класса WindInstrument|----\n";
+	system("pause");
 	delete[] NameManufacture;
 	NameManufacture = nullptr;
 	delete[] Defects;
 	Defects = nullptr;
-	std::cout << "\n----|Вызван деструктор класса WindInstrument|----\n";
-	system("pause");
 }
 
 char* WindInstrument::GetNameManufacture() {
@@ -278,10 +212,10 @@ void WindInstrument::LoadFile(std::ifstream& fin) {
 			SetFullNameOwner(readLineFile(fin));
 			break;
 		case 2:
-			SetNumUnitsOrchestra((int)readLineFile(fin));
+			SetNumUnitsOrchestra(atoi(readLineFile(fin)));
 			break;
 		case 3:
-			SetCost((float)(int)readLineFile(fin));
+			SetCost(convertToFloat(readLineFile(fin)));
 			break;
 		case 4:
 			NameManufacture = readLineFile(fin);

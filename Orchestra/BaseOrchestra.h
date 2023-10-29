@@ -1,7 +1,7 @@
 #pragma once
 #include "GetString.h"
-#include "initString.h"
 #include "readLineFile.h"
+#include "convertToFloat.h" 
 #include <iostream>
 #include <fstream>
 
@@ -14,7 +14,7 @@ private:
 	int NumberInstrument;
 public:
 	BaseOrchestra();
-	BaseOrchestra(char* s);
+	BaseOrchestra(const char* initStr); 
 	BaseOrchestra(const BaseOrchestra& other);
 	virtual ~BaseOrchestra();
 

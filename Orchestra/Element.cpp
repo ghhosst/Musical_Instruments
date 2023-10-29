@@ -2,18 +2,20 @@
 #include "PercussionInstrument.h"
 #include "StringInstrument.h"
 #include "WindInstrument.h"
-using namespace std;
 
 Element::Element() {
+	std::cout << "\n----|Вызван конструктор класса Element (без параметров)|----\n";
+	system("pause");
+
 	next = nullptr;
 	prev = nullptr;
 	instrument = nullptr;
 	numberElement = 0;
-	std::cout << "\n----|Вызван конструктор класса Element (без параметров)|----\n";
-	system("pause");
 }
 
 Element::Element(int choiceInstrument) {
+	std::cout << "\n----|Вызван конструктор класса Element (с параметром choiceInstrument)|----\n";
+	system("pause");
 	
 	switch (choiceInstrument) {
 	case 1: // PercussionInstrument
@@ -31,50 +33,50 @@ Element::Element(int choiceInstrument) {
 	default:
 		break;
 	}
-	std::cout << "\n----|Вызван конструктор класса Element (с параметром choiceInstrument)|----\n";
-	system("pause");
 }
 
 Element::Element(char TypeInstrument) {
+	std::cout << "\n----|Вызван конструктор класса Element (с параметром TypeInstrument)|----\n";
+	system("pause");
 
 	switch (TypeInstrument) {
 	case 'P': // PercussionInstrument
-		instrument = new PercussionInstrument;
+		instrument = new PercussionInstrument('f');
 		TypeInstrument = 'P';
 		break;
 	case 'S': // StringInstrument
-		instrument = new StringInstrument;
+		instrument = new StringInstrument('f');
 		TypeInstrument = 'S';
 		break;
 	case 'W': // WindInstrument
-		instrument = new WindInstrument;
+		instrument = new WindInstrument('f');
 		TypeInstrument = 'W';
 		break;
 	default:
 		break;
 	}
-	std::cout << "\n----|Вызван конструктор класса Element (с параметром TypeInstrument)|----\n";
-	system("pause");
 }
 
 Element::Element(const Element& other) {
+	std::cout << "\n----|Вызван конструктор класса Element (копирования)|----\n";
+	system("pause");
+
 	this->numberElement = other.numberElement;
 	this->next = new Element;
 	this->next = other.next;
 	this->prev = new Element;
 	this->prev = other.prev;
 	this->instrument = other.instrument;
-	std::cout << "\n----|Вызван конструктор класса Element (копирования)|----\n";
-	system("pause");
 }
 
 Element::~Element() {
+	std::cout << "\n----|Вызван деструктор класса Element|----\n";
+	system("pause");
+
 	next = nullptr;
 	prev = nullptr;
 	delete instrument;
 	instrument = nullptr;
-	std::cout << "\n----|Вызван деструктор класса Element|----\n";
-	system("pause");
 }
 
 Element* Element::GetNext() {

@@ -130,9 +130,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BaseOrchestra.cpp" />
+    <ClCompile Include="convertToFloat.cpp" />
     <ClCompile Include="Element.cpp" />
     <ClCompile Include="GetString.cpp" />
-    <ClCompile Include="InitString.cpp" />
     <ClCompile Include="Keeper.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PercussionInstrument.cpp" />
@@ -142,13 +142,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseOrchestra.h" />
+    <ClInclude Include="convertToFloat.h" />
     <ClInclude Include="Element.h" />
     <ClInclude Include="GetString.h" />
+    <ClInclude Include="initString.h" />
     <ClInclude Include="Keeper.h" />
     <ClInclude Include="PercussionInstrument.h" />
     <ClInclude Include="readLineFile.h" />
     <ClInclude Include="StringInstrument.h" />
-    <ClInclude Include="initString.h" />
     <ClInclude Include="WindInstrument.h" />
   </ItemGroup>
   <ItemGroup>

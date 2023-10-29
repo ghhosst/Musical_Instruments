@@ -1,80 +1,15 @@
 #define _CRT_SECURE_NO_WARNINGS  
 #include "PercussionInstrument.h"
-using std::cout;
-using std::cin;		
-using std::endl;
+using std::cout, std::cin, std::endl;
 
 PercussionInstrument::PercussionInstrument() {
-	char* s = nullptr;
-	TypePerc = initString(s); 
-
-	int choicePercussionInst;
-	int NumUnitsPercussion;
-	float CostPercussion;
-	int lenString;
-	do {
-		system("cls");
-		cout << "Введите данные об ударном инструменте" << endl
-			<< "1) Название" << endl
-			<< "2) ФИО владельца" << endl
-			<< "3) Количество единиц в оркестре" << endl
-			<< "4) Стоимость" << endl
-			<< "5) Тип" << endl
-			<< "6) Выход" << endl
-			<< "Выбранный пункт: ";
-		cin >> choicePercussionInst;
-
-
-		switch (choicePercussionInst) {
-		case 1:
-			system("cls");
-			cout << "Ударный интрумент\n";
-			cout << "Введите название:\n" << endl;
-			SetNameInstrument(getString(&lenString));
-			break;
-		case 2:
-			system("cls");
-			cout << "Ударный инструмент\n";
-			cout << "Введите ФИО владельца:\n" << endl;
-			SetFullNameOwner(getString(&lenString));
-			break;
-		case 3:
-			system("cls");
-			cout << "Ударный инструмент\n";
-			cout << "Введите количество единиц в оркестре: ";
-			cin >> NumUnitsPercussion;
-			SetNumUnitsOrchestra(NumUnitsPercussion);
-			break;
-		case 4:
-			system("cls");
-			cout << "Ударный инструмент\n";
-			cout << "Введите стоимость: ";
-			cin >> CostPercussion;
-			SetCost(CostPercussion);
-			break;
-		case 5:
-			system("cls");
-			cout << "Ударный инструмент\n";
-			cout << "Введите тип: \n" << endl;
-			TypePerc = getString(&lenString);
-			break;
-		case 6:
-			break;
-		default:
-			cout << "\n\nНеккоректный выбор!!!\nПожалуйста, выберете пункт от 1 до 6.\n\n";
-			system("pause");
-			break;
-		}
-	} while (choicePercussionInst != 6);
-
-	delete[] s;
-	s = nullptr;
 	std::cout << "\n----|Вызван конструктор класса PercussionInstrument (без параметров)|----\n";
 	system("pause");
-}
 
-PercussionInstrument::PercussionInstrument(char* s) {
-	TypePerc = initString(s);
+	const char* initStr = "\t-";
+	
+	TypePerc = new char[sizeof(initStr)]; 
+	strcpy(TypePerc, initStr);  
 
 	int choicePercussionInst;
 	int NumUnitsPercussion;
@@ -134,24 +69,28 @@ PercussionInstrument::PercussionInstrument(char* s) {
 			break;
 		}
 	} while (choicePercussionInst != 6);
+}
 
-	delete[] s;
-	s = nullptr;
+PercussionInstrument::PercussionInstrument(char file) {
 	std::cout << "\n----|Вызван конструктор класса PercussionInstrument (с параметром)|----\n";
 	system("pause");
+
+	TypePerc = nullptr;
 }
 
 PercussionInstrument::PercussionInstrument(const PercussionInstrument& other) {
-	strcpy(this->TypePerc, other.TypePerc);
 	std::cout << "\n----|Вызван конструктор класса PercussionInstrument (копирования)|----\n";
 	system("pause");
+
+	strcpy(this->TypePerc, other.TypePerc);
 }
 
 PercussionInstrument::~PercussionInstrument() {
-	delete[] TypePerc;
-	TypePerc = nullptr;
 	std::cout << "\n----|Вызван деструктор класса PercussionInstrument|----\n";
 	system("pause");
+
+	delete[] TypePerc; 
+	TypePerc = nullptr;
 }
 
 char* PercussionInstrument::GetTypePerc() {
@@ -233,7 +172,7 @@ void PercussionInstrument::SaveSpecial(std::ofstream& fout) {
 		 << TypePerc << endl;  
 }
 
-void PercussionInstrument::LoadFile(std::ifstream& fin) {
+void PercussionInstrument::LoadFile(std::ifstream& fin) { 
 	for (int i = 0; i < 5; i++) {
 		switch (i) {
 		case 0:
@@ -243,10 +182,10 @@ void PercussionInstrument::LoadFile(std::ifstream& fin) {
 			SetFullNameOwner(readLineFile(fin));
 			break;
 		case 2:
-			SetNumUnitsOrchestra((int)readLineFile(fin));
+			SetNumUnitsOrchestra(atoi(readLineFile(fin)));
 			break;
 		case 3:
-			SetCost((float)(int)readLineFile(fin));
+			SetCost(convertToFloat(readLineFile(fin)));
 			break;
 		case 4:
 			TypePerc = readLineFile(fin);

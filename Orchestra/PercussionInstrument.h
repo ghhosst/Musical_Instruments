@@ -7,7 +7,7 @@ private:
     char* TypePerc;
 public:
     PercussionInstrument();
-    PercussionInstrument(char* s);
+    PercussionInstrument(char file); 
     PercussionInstrument(const PercussionInstrument& other);
     ~PercussionInstrument() override;
 

@@ -1,24 +1,29 @@
 #include "Keeper.h"
-using std::cout, std::cin, std::endl;
+using std::cout, std::cin, std::endl; 
 
 Keeper::Keeper() {
-	root = nullptr;
-	rear = nullptr;
-	index = nullptr;
 	system("cls");
 	std::cout << "\n----|Вызван конструктор класса Keeper (без параметров)|----\n";
 	system("pause");
+
+	root = nullptr;
+	rear = nullptr;
+	index = nullptr;
 }
 
 Keeper::Keeper(Element* root, Element* rear, Element* index) {
+	std::cout << "\n----|Вызван конструктор класса Keeper (с параметрами)|----\n";
+	system("pause");
+
 	this->root = root;
 	this->rear = rear;
 	this->index = index; 
-	std::cout << "\n----|Вызван конструктор класса Keeper (с параметрами)|----\n";
-	system("pause");
 }
 
 Keeper::Keeper(const Keeper& other) {
+	std::cout << "\n----|Вызван конструктор класса Keeper (копирования)|----\n";
+	system("pause");
+
 	this->root = nullptr;
 	this->rear = nullptr;
 	this->index = nullptr;
@@ -42,11 +47,12 @@ Keeper::Keeper(const Keeper& other) {
 	}
 
 	this->index = this->root;
-	std::cout << "\n----|Вызван конструктор класса Keeper (копирования)|----\n";
-	system("pause");
 }
 
 Keeper::~Keeper() {
+	std::cout << "\n----|Вызван деструктор класса Keeper|----\n";
+	system("pause");
+
 	while (index != nullptr) {
 		if (index == nullptr) {
 			return;
@@ -64,9 +70,6 @@ Keeper::~Keeper() {
 		index = tmp_element->GetNext();
 		delete tmp_element; 
 	}
-
-	std::cout << "\n----|Вызван деструктор класса Keeper|----\n";
-	system("pause");
 }
 
 Element* Keeper::GetRoot() {
@@ -265,20 +268,44 @@ void Keeper::Load() {
 	fin.open("special.txt"); 
 	if (fin.is_open()) {
 		while (!fin.eof()) {
+			Element* element = nullptr;
 			char* line = readLineFile(fin);
+
 			if (!strcmp(line, "P")) {
-				index = new Element('P');
-				(index->GetInstrument())->LoadFile(fin);
+				element = new Element('P');
+				(element->GetInstrument())->LoadFile(fin);
 			}
 			if (!strcmp(line, "S")) {
-				index = new Element('S');
-				(index->GetInstrument())->LoadFile(fin); 
+				element = new Element('S');
+				(element->GetInstrument())->LoadFile(fin); 
 			}
 			if (!strcmp(line, "W")) {
-				index = new Element('W');
-				(index->GetInstrument())->LoadFile(fin); 
+				element = new Element('W');
+				(element->GetInstrument())->LoadFile(fin); 
 			}
+			if (*line == '\0')
+				return;
+
 			delete[] line;
+
+			element->SetPrev(rear);
+			if (root == nullptr) { // list empty
+				root = element;
+				index = element;
+			}
+			if (rear != nullptr)
+				rear->SetNext(element);
+			rear = element;
+
+
+			if (element->GetPrev() != nullptr) { 
+				element->SetNumberElement((element->GetPrev())->GetNumberElement() + 1); 
+				(element->GetInstrument())->SetNumberInstrument((element->GetPrev())->GetNumberElement() + 1); 
+			} 
+			else { 
+				element->SetNumberElement(1); 
+				(element->GetInstrument())->SetNumberInstrument(1); 
+			}
 		}
 	}
 	else {

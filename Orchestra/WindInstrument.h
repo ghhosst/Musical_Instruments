@@ -8,7 +8,7 @@ private:
     char* Defects;
 public:
     WindInstrument();
-    WindInstrument(char* s);
+    WindInstrument(char file);  
     WindInstrument(const WindInstrument& other);
     ~WindInstrument() override;
 

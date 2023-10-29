@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS  
 #include "Keeper.h"
 #include <iostream>
-using namespace std;
+using std::cout, std::cin, std::endl;
 
 int main() {
 	setlocale(LC_ALL, "Russian");

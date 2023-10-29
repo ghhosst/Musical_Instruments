@@ -4,39 +4,38 @@ char* readLineFile(std::ifstream& file) {
     char c;
     int size = 0;
 
-    // начальное предположение о размере строки.
     int bufferSize = 1;
     char* buffer = new char[bufferSize];
 
-    // Пока есть символы и они не символ перевода строки
+    // As long as there are characters and they are not a newline character
     while (file.get(c) && c != '\n') {
-        // Проверяем, полон ли буфер
+        // Check if the buffer is full
         if (size == bufferSize - 1) {
-            // Если буфер полон, увеличиваем его размер
+            // If the buffer is full, increase its size
             bufferSize *= 2;
             char* newBuffer = new char[bufferSize];
-            // Копируем данные из старого буфера в новый
+            // Copying data from the old buffer to the new one
             for (int i = 0; i < size; ++i) {
                 newBuffer[i] = buffer[i];
             }
-            // Удаляем старый буфер
+            // Deleting the old buffer
             delete[] buffer;
             buffer = newBuffer;
         }
 
-        // Сохраняем символ в буфер
+        // Saving the character to the buffer
         buffer[size] = c;
         ++size;
     }
 
-    // Уменьшаем буфер до нужного размера
+    // Reducing the buffer to the desired size
     char* trimmedBuffer = new char[size + 1];
     for (int i = 0; i < size; ++i) {
         trimmedBuffer[i] = buffer[i];
     }
     trimmedBuffer[size] = '\0';
 
-    // Удаляем оригинальный буфер
+    // Deleting the original buffer
     delete[] buffer;
 
     return trimmedBuffer;
