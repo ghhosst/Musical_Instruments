@@ -135,6 +135,7 @@
     <ClCompile Include="GetString.cpp" />
     <ClCompile Include="Keeper.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MyException.cpp" />
     <ClCompile Include="PercussionInstrument.cpp" />
     <ClCompile Include="readLineFile.cpp" />
     <ClCompile Include="StringInstrument.cpp" />
@@ -145,8 +146,8 @@
     <ClInclude Include="convertToFloat.h" />
     <ClInclude Include="Element.h" />
     <ClInclude Include="GetString.h" />
-    <ClInclude Include="initString.h" />
     <ClInclude Include="Keeper.h" />
+    <ClInclude Include="MyException.h" />
     <ClInclude Include="PercussionInstrument.h" />
     <ClInclude Include="readLineFile.h" />
     <ClInclude Include="StringInstrument.h" />

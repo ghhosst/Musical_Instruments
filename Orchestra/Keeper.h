@@ -22,9 +22,9 @@ public:
 	Element* GetIndex();
 	void SetIndex(Element* index);
 
-	void Add();
+	Keeper& operator ++ ();  
 	void ShowOrchestra();
-	void DeleteInstrument();
+	Keeper& operator -- ();
 	void ÑhangeInstrument();
 	void Save();
 	void Load();

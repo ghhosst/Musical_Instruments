@@ -2,6 +2,7 @@
 #include "GetString.h"
 #include "readLineFile.h"
 #include "convertToFloat.h" 
+#include "MyException.h"
 #include <iostream>
 #include <fstream>
 
